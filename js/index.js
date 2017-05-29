@@ -84,6 +84,24 @@
 		},
 
 		'.confirm click': function(context, $el) {
+			// 初期化
+			context.event.preventDefault();
+			
+			// パラメータの設定
+			var params = {};
+			var ary = this.$find('form').serializeArray();
+			for (i in ary) {
+				params[ary[i].name] = ary[i].value;
+			}
+
+			// 複数行対応分のエスケープ処理
+			params.comment = h5.u.str.escapeHtml(params.comment);
+
+			// ビューの設定
+			this.view.update('.modal-content','confirm',params);
+
+			// モーダル表示
+			this.$find('#confirmModal').modal();
 		},
 
 	};
