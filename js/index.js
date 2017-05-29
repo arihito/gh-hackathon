@@ -103,6 +103,17 @@
 			// モーダル表示
 			this.$find('#confirmModal').modal();
 		},
+		'.register click': function(context, $el) {
+			// Ajaxの擬似的実行
+			h5.ajax({
+				type: 'post',
+				data: this.$find('form').serialize(),
+				url: '/register'
+			}).then(function() {
+				alert('登録しました');
+				this.$find('#confirmModal').modal('hide');
+			})
+		}
 
 	};
 	
